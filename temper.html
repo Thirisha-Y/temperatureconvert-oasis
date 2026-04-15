@@ -1,0 +1,94 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Temp Converter</title>
+
+<style>
+body {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg,#1f1c2c,#928dab);
+    font-family: Arial;
+}
+
+.card {
+    width: 360px;
+    padding: 25px;
+    border-radius: 15px;
+    background: rgba(255,255,255,0.1);
+    color: white;
+    text-align: center;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    background: #ff5e62;
+    border: none;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.result {
+    margin-top: 15px;
+    padding: 10px;
+    background: rgba(0,0,0,0.3);
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+    <h2>🌡️ Converter</h2>
+
+    <input id="temp" type="number" placeholder="Enter temperature">
+
+    <select id="unit">
+        <option value="c">Celsius</option>
+        <option value="f">Fahrenheit</option>
+        <option value="k">Kelvin</option>
+    </select>
+
+    <button onclick="convert()">Convert</button>
+
+    <div class="result" id="result">Result will appear here</div>
+</div>
+
+<script>
+function convert() {
+    let temp = Number(document.getElementById("temp").value);
+    let unit = document.getElementById("unit").value;
+    let result = "";
+
+    if (unit === "c") {
+        result = `Fahrenheit: ${(temp*9/5+32).toFixed(2)} °F<br>
+                  Kelvin: ${(temp+273.15).toFixed(2)} K`;
+    }
+
+    if (unit === "f") {
+        result = `Celsius: ${((temp-32)*5/9).toFixed(2)} °C<br>
+                  Kelvin: ${(((temp-32)*5/9)+273.15).toFixed(2)} K`;
+    }
+
+    if (unit === "k") {
+        result = `Celsius: ${(temp-273.15).toFixed(2)} °C<br>
+                  Fahrenheit: ${(((temp-273.15)*9/5)+32).toFixed(2)} °F`;
+    }
+
+    document.getElementById("result").innerHTML = result;
+}
+</script>
+
+</body>
+</html>
